@@ -13,4 +13,4 @@ Then include the Stylesheet. Ensure to include it AFTER bootstrap.css, as it ove
 Cross-Browser Tested
 --------------------
 
-I've tested the modal on IE7+, Safari, Firefox 4+ and Chrome. Let me know if you find any compatiility issues.
+I've tested the modal on IE7+, Safari, Firefox 4+ and Chrome. Let me know if you find any compatibility issues.
