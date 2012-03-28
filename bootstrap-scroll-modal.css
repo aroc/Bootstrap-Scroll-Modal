@@ -1,0 +1,30 @@
+/*!
+ * Bootstrap Scroll Modal
+ * Version: 0.1;
+ * Made for your convenience by @theericanderson
+ */
+
+.modal {
+  position: static;
+  margin: 0;
+}
+.modal .modal-body {
+  max-height: none;
+}
+.modal-backdrop {
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-wrapper {
+  top: 50px;
+  left: 50%;
+  margin-left: -280px;
+  z-index: 1050;
+  width: 560px;
+  position: absolute;
+  padding-bottom: 80px;
+  overflow: visible;
+}
