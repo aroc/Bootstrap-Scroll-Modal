@@ -1,13 +1,21 @@
-/* 
- * This is a fork of the Twitter Bootstrap Modal Javascript Plugin.
- * Made for your convenience by @theericanderson
- * The original plugin can be found here:
- *
- * =========================================================
+/* =========================================================
  * bootstrap-modal.js v2.0.2
  * http://twitter.github.com/bootstrap/javascript.html#modals
  * =========================================================
- */
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
 
 
 !function( $ ){
@@ -20,7 +28,6 @@
   var Modal = function ( content, options ) {
     this.options = options
     this.$element = $(content)
-      .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
   }
 
   Modal.prototype = {
@@ -120,13 +127,19 @@
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
         .insertBefore(this.$element)
-      this.$elementWrapper = $('<div class="modal-wrapper clearfix" />')
+      this.$elementWrapper = $('<div class="modal-wrapper" />')
         .prependTo(this.$backdrop)
-      this.$element.remove().prependTo(this.$elementWrapper)
+        .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+      this.$element.prependTo(this.$elementWrapper)
+
       $('html').css({ 'overflow' : 'hidden'  })
 
       if (this.options.backdrop != 'static') {
-        this.$backdrop.click($.proxy(this.hide, this))
+        this.$backdrop.on('click', function(e){
+          if (e.target == e.delegateTarget) {
+            that.hide(e)
+          }
+        })
       }
 
       if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
