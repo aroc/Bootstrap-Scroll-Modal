@@ -163,7 +163,7 @@
   }
 
   function removeBackdrop() {
-    this.$element.remove().insertAfter(this.$backdrop)
+    this.$element.insertAfter(this.$backdrop)
     this.$backdrop.remove()
     this.$backdrop = null
     $('html').css({ 'overflow' : 'auto'  })
