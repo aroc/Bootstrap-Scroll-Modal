@@ -10,6 +10,7 @@
 }
 .modal .modal-body {
   max-height: none;
+  overflow-y: visible;
 }
 .modal-backdrop {
   overflow-x: hidden;
