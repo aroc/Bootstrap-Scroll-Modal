@@ -1,3 +1,10 @@
+/*!
+ * Bootstrap Scroll Modal
+ * Version: 1.0
+ * Made for your convenience by @theericanderson
+ * A variaton of but a small piece of the insanely awesome Twitter Bootstrap (http://twitter.github.com/bootstrap)
+ */
+
 /* =========================================================
  * bootstrap-modal.js v2.0.2
  * http://twitter.github.com/bootstrap/javascript.html#modals
