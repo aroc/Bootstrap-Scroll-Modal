@@ -145,6 +145,17 @@
         .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
       }
 
+      $('.modal').css({
+          width: 'auto',
+          'margin-left': '0px'
+      });
+      $('.modal-wrapper').css({
+          width: 'auto',
+          'margin-left': function () {
+              return -($('.modal').width() / 2);
+          }
+      });
+
       $('html').css({ 'overflow' : 'hidden'  })
 
       if (this.options.backdrop != 'static') {
