@@ -139,6 +139,11 @@
         this.$elementWrapper = $('<div class="modal-wrapper" />')
           .prependTo(this.$backdrop)
           .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+          .on('click', function(e){
+            if (e.target == e.delegateTarget) {
+              that.hide(e)
+            }
+          });
         this.$element.prependTo(this.$elementWrapper)    
       } else {
         this.$element.prependTo(this.$backdrop)
@@ -152,7 +157,7 @@
           if (e.target == e.delegateTarget) {
             that.hide(e)
           }
-        })
+        });
       }
 
       if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
