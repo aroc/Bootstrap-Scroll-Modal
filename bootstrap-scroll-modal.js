@@ -152,7 +152,12 @@
           if (e.target == e.delegateTarget) {
             that.hide(e)
           }
-        })
+        });
+        this.$elementWrapper.on('click', function(e){
+          if (e.target == e.delegateTarget) {
+            that.hide(e)
+          }
+        });
       }
 
       if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
