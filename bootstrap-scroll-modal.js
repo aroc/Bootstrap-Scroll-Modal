@@ -139,6 +139,11 @@
         this.$elementWrapper = $('<div class="modal-wrapper" />')
           .prependTo(this.$backdrop)
           .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+          .on('click', function(e){
+            if (e.target == e.delegateTarget) {
+              that.hide(e)
+            }
+          });
         this.$element.prependTo(this.$elementWrapper)    
       } else {
         this.$element.prependTo(this.$backdrop)
@@ -149,11 +154,6 @@
 
       if (this.options.backdrop != 'static') {
         this.$backdrop.on('click', function(e){
-          if (e.target == e.delegateTarget) {
-            that.hide(e)
-          }
-        });
-        this.$elementWrapper.on('click', function(e){
           if (e.target == e.delegateTarget) {
             that.hide(e)
           }
