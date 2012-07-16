@@ -39,4 +39,5 @@
 .modal-wrapper .modal .modal-body {
   overflow-y: visible;
   max-height: none;
+  z-index: 1060; /* IE8 fix for radio button focus / blur issue */
 }
