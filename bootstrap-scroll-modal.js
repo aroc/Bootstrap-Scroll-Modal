@@ -153,7 +153,7 @@
           .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
         this.$element.prependTo(this.$elementWrapper)
       } else {
-        this.$element.prependTo(this.$backdrop)
+        this.$element
         .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
       }
 
