@@ -1,12 +1,13 @@
 /*!
  * Bootstrap Scroll Modal
- * Version: 1.0
- * Made for your convenience by @theericanderson
- * A variaton of but a small piece of the insanely awesome Twitter Bootstrap (http://twitter.github.com/bootstrap)
+ * Version: 1.1
+ * Made for your convenience by @theericanderson.
+ * A variaton of only small piece of the insanely awesome
+ * Twitter Bootstrap (http://twitter.github.com/bootstrap).
  */
 
 /* =========================================================
- * bootstrap-modal.js v2.0.2
+ * bootstrap-modal.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#modals
  * =========================================================
  * Copyright 2012 Twitter, Inc.
@@ -25,9 +26,9 @@
  * ========================================================= */
 
 
-!function( $ ){
+!function ($) {
 
-  "use strict"
+  "use strict"; // jshint ;_;
 
  /* MODAL CLASS DEFINITION
   * ====================== */
@@ -35,6 +36,7 @@
   var Modal = function ( content, options ) {
     this.options = options
     this.$element = $(content)
+      .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
   }
 
   Modal.prototype = {
@@ -47,19 +49,22 @@
 
     , show: function () {
         var that = this
+          , e = $.Event('show')
 
-        if (this.isShown) return
+        if (this.isShown || e.isDefaultPrevented()) return
 
         $('body').addClass('modal-open')
 
         this.isShown = true
-        this.$element.trigger('show')
 
         escape.call(this)
         backdrop.call(this, function () {
+
           var transition = $.support.transition && that.$element.hasClass('fade')
 
-          !that.$element.parent().length && that.$element.appendTo(document.body) //don't move modals dom position
+          if (!that.$element.parent().length) {
+            that.$element.appendTo(document.body) //don't move modals dom position
+          }
 
           that.$element
             .show()
@@ -80,18 +85,21 @@
     , hide: function ( e ) {
         e && e.preventDefault()
 
-        if (!this.isShown) return
-
         var that = this
+
+        e = $.Event('hide')
+
+        this.$element.trigger(e)
+
+        if (!this.isShown || e.isDefaultPrevented()) return
+
         this.isShown = false
 
         $('body').removeClass('modal-open')
 
         escape.call(this)
 
-        this.$element
-          .trigger('hide')
-          .removeClass('in')
+        this.$element.removeClass('in')
 
         $.support.transition && this.$element.hasClass('fade') ?
           hideWithTransition.call(this) :
@@ -117,7 +125,7 @@
     })
   }
 
-  function hideModal( that ) {
+  function hideModal(that) {
     this.$element
       .hide()
       .trigger('hidden')
@@ -125,7 +133,7 @@
     backdrop.call(this)
   }
 
-  function backdrop( callback ) {
+  function backdrop(callback) {
     var that = this
       , animate = this.$element.hasClass('fade') ? 'fade' : ''
 
@@ -133,19 +141,23 @@
       var doAnimate = $.support.transition && animate
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
-        .insertBefore(this.$element)
-
+      if (!that.$element.parent().length) {
+          this.$backdrop.appendTo(document.body) //don't move modals dom position
+      } else {
+          this.$backdrop.insertBefore(this.$element)
+      }
+      
       if (this.options.dynamic) {
         this.$elementWrapper = $('<div class="modal-wrapper" />')
           .prependTo(this.$backdrop)
           .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
-        this.$element.prependTo(this.$elementWrapper)    
+        this.$element.prependTo(this.$elementWrapper)
       } else {
         this.$element.prependTo(this.$backdrop)
         .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
       }
 
-      $('html').css({ 'overflow' : 'hidden'  })
+      $('body').css({ 'overflow' : 'hidden' })
 
       if (this.options.backdrop != 'static') {
         this.$backdrop.on('click', function(e){
@@ -179,7 +191,7 @@
     this.$element.insertAfter(this.$backdrop)
     this.$backdrop.remove()
     this.$backdrop = null
-    $('html').css({ 'overflow' : 'auto'  })
+    $('body').css({ 'overflow' : 'auto' })
   }
 
   function escape() {
@@ -231,4 +243,4 @@
     })
   })
 
-}( window.jQuery );
+}(window.jQuery);
