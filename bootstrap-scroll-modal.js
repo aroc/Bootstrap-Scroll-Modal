@@ -58,6 +58,12 @@
         this.isShown = true
 
         escape.call(this)
+
+        if (this.options.dynamic) {
+          this.$elementWrapper = $('<div class="modal-wrapper" />').insertBefore(this.$element)
+          this.$element.prependTo(this.$elementWrapper)
+        }
+
         backdrop.call(this, function () {
 
           var transition = $.support.transition && that.$element.hasClass('fade')
@@ -130,6 +136,12 @@
       .hide()
       .trigger('hidden')
 
+    if (this.options.dynamic) {
+      this.$element.insertAfter(this.$elementWrapper)
+      this.$elementWrapper.remove()
+      this.$elementWrapper = null
+    }
+
     backdrop.call(this)
   }
 
@@ -142,16 +154,16 @@
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
       if (!that.$element.parent().length) {
-          this.$backdrop.appendTo(document.body) //don't move modals dom position
+        this.$backdrop.appendTo(document.body) //don't move modals dom position
+      } else if (this.options.dynamic) {
+        this.$backdrop.insertBefore(this.$elementWrapper)
       } else {
-          this.$backdrop.insertBefore(this.$element)
+        this.$backdrop.insertBefore(this.$element)
       }
       
       if (this.options.dynamic) {
-        this.$elementWrapper = $('<div class="modal-wrapper" />')
-          .prependTo(this.$backdrop)
-          .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
-        this.$element.prependTo(this.$elementWrapper)
+        this.$elementWrapper.prependTo(this.$backdrop)
+        .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
       } else {
         this.$element.prependTo(this.$backdrop)
         .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
