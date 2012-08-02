@@ -30,6 +30,17 @@
   padding-bottom: 80px;
   overflow: visible;
 }
+@media (max-width: 480px) {
+  .modal-wrapper {
+    position:absolute;
+    top:10px;
+    left:10px;
+    right:10px;
+    width:auto;
+    margin:0;
+  }
+  .modal-wrapper.fade.in { top:auto; }
+}
 .modal-wrapper .modal {
   position: static;
   margin: 0;
