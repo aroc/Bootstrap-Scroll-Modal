@@ -41,3 +41,30 @@
   max-height: none;
   z-index: 1060; /* IE8 fix for radio button focus / blur issue */
 }
+
+/* Styles to ensure Scroll Modal works on smaller browsers, specifically mobile. */
+@media (max-width: 767px) {
+  .modal-wrapper {
+      position: absolute;
+      top: 50px;
+      left: 20%;
+      z-index: 1050;
+      width: 70%;
+      margin-left: 0px;
+      padding-bottom: 80px;
+      overflow: visible;
+  }
+}
+
+@media ( max-width : 480px) {
+  .modal-wrapper {
+      position: absolute;
+      top: 50px;
+      left: 10%;
+      z-index: 1050;
+      width: 80%;
+      margin-left: 0px;
+      padding-bottom: 80px;
+      overflow: visible;
+  }
+}
