@@ -1,6 +1,6 @@
 /*!
  * Bootstrap Scroll Modal
- * Version: 1.0
+ * Version: 1.2
  * Made for your convenience by @theericanderson
  * A variaton of but a small piece of the insanely awesome Twitter Bootstrap (http://twitter.github.com/bootstrap)
  */
@@ -56,7 +56,7 @@
   }
 }
 
-@media ( max-width : 480px) {
+@media (max-width : 480px) {
   .modal-wrapper {
       position: absolute;
       top: 50px;
