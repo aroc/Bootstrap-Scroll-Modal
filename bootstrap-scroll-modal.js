@@ -54,8 +54,6 @@
 
         if (this.isShown || e.isDefaultPrevented()) return
 
-        // $('body').addClass('modal-open')
-
         this.isShown = true
 
         this.escape()
@@ -104,8 +102,6 @@
         if (!this.isShown || e.isDefaultPrevented()) return
 
         this.isShown = false
-
-        // $('body').removeClass('modal-open')
 
         this.escape()
 
@@ -204,13 +200,15 @@
 
           $('body').css({ 'overflow' : 'hidden' })
 
-          // end additions
+          this.$backdrop.on('click', function(e){
+            if (that.options.backdrop == 'static') {
+              $.proxy(that.$element[0].focus, that.$element[0])
+            } else if (e.target == e.delegateTarget) {
+              that.hide(e)
+            }
+          })
 
-          this.$backdrop.click(
-            this.options.backdrop == 'static' ?
-              $.proxy(this.$element[0].focus, this.$element[0])
-            : $.proxy(this.hide, this)
-          )
+          // end additions
 
           if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
 
