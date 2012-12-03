@@ -1,7 +1,7 @@
 Bootstrap Scroll Modal v 1.2
 ============================
 
-Twitter Bootstrap's current modal has a fixed height and scrolls long content inside of it. This version of the plugin, along with some minimal CSS allows you to have a modal that acts more like Facebook and Trello modals, where the content can be any height and the whole page scrolls, rather than internal scrollbars in the modal.
+Twitter Bootstrap's current modal has a fixed height and scrolls long content inside of it. This version of the plugin, along with some minimal CSS allows you to have a modal that acts more like Facebook and Trello modals, where the content can be any height and the whole page scrolls, rather than internal scrollbars in the modal. [View it in action here.](http://aroc.github.com/Bootstrap-Scroll-Modal/example.html "Bootstrap Scroll Modal Example").
 
 How to Use
 ----------
