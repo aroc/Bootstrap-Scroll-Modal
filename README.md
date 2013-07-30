@@ -1,3 +1,8 @@
+Notice: You no longer need this project
+---------------------------------------
+
+I built this project because I (and apparently some other people) found this very useful at the time. However, a scrolling modal is now a standard part of Bootstrap 3.0. If what's included in 3.0 doesn't suit your needs or you're still using Bootstrap < 3, then check out https://github.com/jschr/bootstrap-modal
+
 Bootstrap Scroll Modal v 1.2
 ============================
 
