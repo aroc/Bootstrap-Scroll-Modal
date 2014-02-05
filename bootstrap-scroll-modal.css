@@ -18,7 +18,7 @@
 }
 .modal-backdrop.in, .modal-backdrop.fade.in {
   opacity: 1.0;
-  filter: alpha(opacity=100);
+  filter: none;
 }
 .modal-wrapper {
   position: relative;
