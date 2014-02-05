@@ -193,12 +193,11 @@
           if (this.options.dynamic) {
             this.$elementWrapper.prependTo(this.$backdrop)
               .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+            $('body').css({ 'overflow' : 'hidden' })
           } else {
             this.$element.prependTo(this.$backdrop)
               .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
           }
-
-          $('body').css({ 'overflow' : 'hidden' })
 
           this.$backdrop.on('click', function(e){
             if (that.options.backdrop == 'static') {
